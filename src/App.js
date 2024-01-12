@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
-function App() {
+
+export default function App() {
+  const [firstName, setFirstName] = useState();
+  const [lastname, setLastName] = useState();
+  const [err, setErr] = useState(true);
+
+  const changeFirst = (e) => {
+    setFirstName(e.target.value);
+  };
+  const changeLast = (e) => {
+    setLastName(e.target.value);
+  };
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (firstName === " " || lastname === " ") setErr(true);
+    else {
+      setErr(false);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <form onSubmit={submitHandler}>
+        <label htmlFor="firstname">
+          First Name:
+          <input id="firstname" required onChange={changeFirst} />
+        </label>
+        <br />
+        <br />
+        <label htmlFor="lastname">
+          Last Name:
+          <input id="lastname" required onChange={changeLast} />
+        </label>
+        <br />
+        <br />
+        <button>Submit</button>
+      </form>
+      <p>{err ? "" : `Full Name: ${firstName} ${lastname}`}</p>
+    </>
   );
 }
-
-export default App;
