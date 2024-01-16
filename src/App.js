@@ -14,8 +14,9 @@ export default function App() {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    if (firstName === " " || lastname === " ") setErr(true);
-    else {
+    if (!firstName.trim() || !lastname.trim()) {
+      setErr(true);
+    } else {
       setErr(false);
     }
   };
@@ -25,17 +26,17 @@ export default function App() {
       <form onSubmit={submitHandler}>
         <label htmlFor="firstname">
           First Name:
-          <input id="firstname" required onChange={changeFirst} />
+          <input  type='text' id="firstname" required onChange={changeFirst} />
         </label>
         <br />
         <br />
         <label htmlFor="lastname">
           Last Name:
-          <input id="lastname" required onChange={changeLast} />
+          <input type='text' id="lastname" required onChange={changeLast} />
         </label>
         <br />
         <br />
-        <button>Submit</button>
+        <button type='submit'>Submit</button>
       </form>
       <p>{err ? "" : `Full Name: ${firstName} ${lastname}`}</p>
     </>
