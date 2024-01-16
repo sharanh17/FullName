@@ -1,17 +1,18 @@
 import { useState } from "react";
 
-
 export default function App() {
-  const [firstName, setFirstName] = useState();
-  const [lastname, setLastName] = useState();
-  const [err, setErr] = useState(true);
+  const [firstName, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [err, setErr] = useState(false);
 
   const changeFirst = (e) => {
     setFirstName(e.target.value);
   };
+
   const changeLast = (e) => {
     setLastName(e.target.value);
   };
+
   const submitHandler = (e) => {
     e.preventDefault();
     if (!firstName.trim() || !lastname.trim()) {
@@ -26,19 +27,19 @@ export default function App() {
       <form onSubmit={submitHandler}>
         <label htmlFor="firstname">
           First Name:
-          <input  type='text' id="firstname" required onChange={changeFirst} />
+          <input type="text" id="firstname" required onChange={changeFirst} />
         </label>
         <br />
         <br />
         <label htmlFor="lastname">
           Last Name:
-          <input type='text' id="lastname" required onChange={changeLast} />
+          <input type="text" id="lastname" required onChange={changeLast} />
         </label>
         <br />
         <br />
-        <button type='submit'>Submit</button>
+        <button type="submit">Submit</button>
       </form>
-      <p>{err ? "" : `Full Name: ${firstName} ${lastname}`}</p>
+      <p>{err ? "Please fill out both fields" : `Full Name: ${firstName} ${lastname}`}</p>
     </>
   );
 }
