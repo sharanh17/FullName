@@ -24,7 +24,9 @@ export default function App() {
 
   return (
     <>
+    <h1>Full Name Display</h1>
       <form onSubmit={submitHandler}>
+      
         <label htmlFor="firstname">
           First Name:
           <input type="text" id="firstname" required onChange={changeFirst} />
