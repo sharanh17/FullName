@@ -1,9 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function App() {
   const [firstName, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [err, setErr] = useState(false);
+  const [lastName, setLastName] = useState(""); // Fixed typo here
+  const [err, setErr] = useState(true);
 
   const changeFirst = (e) => {
     setFirstName(e.target.value);
@@ -15,7 +15,7 @@ export default function App() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (!firstName.trim() || !lastname.trim()) {
+    if (!firstName.trim() || !lastName.trim()) {
       setErr(true);
     } else {
       setErr(false);
@@ -39,7 +39,7 @@ export default function App() {
         <br />
         <button type="submit">Submit</button>
       </form>
-      <p>{err ? "Please fill out both fields" : `Full Name: ${firstName} ${lastname}`}</p>
+      {err ? null : <p>Full Name: {firstName} {lastName}</p>}
     </>
   );
 }
